@@ -8,9 +8,7 @@ const app = express();
 dotenv.config();
 app.use(cors());
 
-mongoose.connect(
-  `mongodb://${process.env.MONGODB_USERNAME}:${process.env.MONGODB_PASSWORD}@cocktails-shard-00-00-akrnn.gcp.mongodb.net:27017,cocktails-shard-00-01-akrnn.gcp.mongodb.net:27017,cocktails-shard-00-02-akrnn.gcp.mongodb.net:27017/cocktails?ssl=true&replicaSet=Cocktails-shard-0&authSource=admin&retryWrites=true&w=majority`
-);
+mongoose.connect(process.env.MONGODB_CONNECTION);
 
 mongoose.connection.once("open", () => {
   console.log("connected to database");
