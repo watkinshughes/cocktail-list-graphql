@@ -15,7 +15,11 @@ function CocktailList(props) {
   const displayCocktails = () => {
     const data = props.data;
     if (data.loading) {
-      return <div>Loading</div>;
+      return (
+        <div className="loading">
+          <span className="visually-hidden">Loading</span>
+        </div>
+      );
     } else {
       return data.cocktails.map(cocktail => {
         return <li key={cocktail.id}>{cocktail.name}</li>;

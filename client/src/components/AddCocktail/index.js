@@ -2,25 +2,15 @@ import React, { useState } from "react";
 import { gql } from "apollo-boost";
 import { Mutation } from "react-apollo";
 
-const addCocktail = gql`
-  mutation(
-    $name: String!
-    $ingredients: String!
-    $glass: String!
-    $garnish: String
-    $category: String
-    $preparation: String!
-  ) {
-    createCocktail(
-      data: {
-        status: PUBLISHED
-        name: $name
-        ingredients: $ingredients
-        glass: $glass
-        garnish: $garnish
-        category: $category
-        preparation: $preparation
-      }
+const ADD_COCKTAIL = gql`
+  mutation {
+    addCocktail(
+      name: $name
+      ingredients: $ingredients
+      glass: $glass
+      garnish: $garnish
+      category: $category
+      preparation: $preparation
     ) {
       name
       ingredients
@@ -66,7 +56,7 @@ export default function AddCocktail(props) {
 
   return (
     <Mutation
-      mutation={addCocktail}
+      mutation={ADD_COCKTAIL}
       variables={{
         name: name,
         ingredients: ingredients,
@@ -79,11 +69,11 @@ export default function AddCocktail(props) {
         props.history.push("/");
       }}
     >
-      {(createCocktail, { loading, error }) => {
+      {(addCocktail, { loading, error }) => {
         if (loading) return null;
         if (error) return `Error: ${error}`;
         return (
-          <form onSubmit={createCocktail}>
+          <form onSubmit={addCocktail}>
             <label>
               <span className="visually-hidden">Name</span>
               <input
@@ -113,6 +103,7 @@ export default function AddCocktail(props) {
               <select name="glass" onChange={handleGlassChange}>
                 <option value="">Select Glass</option>
                 <option value="martini">Martini</option>
+                <option value="coup">Coup</option>
                 <option value="old-fashioned">Old-fashioned</option>
                 <option value="collins">Collins</option>
                 <option value="highball">Highball</option>

@@ -5,10 +5,7 @@ import { gql } from "apollo-boost";
 
 const getCocktailDetails = gql`
   query($id: ID) {
-    cocktail(where: { id: $id }) {
-      status
-      updatedAt
-      createdAt
+    cocktail(id: $id) {
       id
       name
       glass
@@ -16,18 +13,6 @@ const getCocktailDetails = gql`
       garnish
       preparation
       ingredients
-      image {
-        status
-        updatedAt
-        createdAt
-        id
-        handle
-        fileName
-        height
-        width
-        size
-        mimeType
-      }
     }
   }
 `;
