@@ -1,0 +1,17 @@
+.form {
+  clear: both;
+}
+
+.button {
+  -webkit-appearance: none;
+  border: 1px solid #ccc;
+  background: #333;
+  color: #fff;
+  padding: 20px 0;
+  margin: 10px 0;
+  display: block;
+  width: 100%;
+  font-size: 20px;
+  text-indent: 1em;
+  cursor: pointer;
+}

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { gql } from "apollo-boost";
 import { Mutation } from "react-apollo";
+import styles from "./styles.module.css";
 
 const ADD_COCKTAIL = gql`
   mutation {
@@ -73,9 +74,9 @@ export default function AddCocktail(props) {
         if (loading) return null;
         if (error) return `Error: ${error}`;
         return (
-          <form onSubmit={addCocktail}>
+          <form onSubmit={addCocktail} className={styles.form}>
             <label>
-              <span className="visually-hidden">Name</span>
+              <span className="visuallyHidden">Name</span>
               <input
                 type="text"
                 name="name"
@@ -84,7 +85,7 @@ export default function AddCocktail(props) {
               />
             </label>
             <label>
-              <span className="visually-hidden">Category</span>
+              <span className="visuallyHidden">Category</span>
               <select name="category" onChange={handleCategoryChange}>
                 <option value="">Select Category</option>
                 <option value="Before Dinner Cocktail">
@@ -99,7 +100,7 @@ export default function AddCocktail(props) {
               </select>
             </label>
             <label>
-              <span className="visually-hidden">Glass</span>
+              <span className="visuallyHidden">Glass</span>
               <select name="glass" onChange={handleGlassChange}>
                 <option value="">Select Glass</option>
                 <option value="martini">Martini</option>
@@ -112,7 +113,7 @@ export default function AddCocktail(props) {
               </select>
             </label>
             <label>
-              <span className="visually-hidden">Garnish</span>
+              <span className="visuallyHidden">Garnish</span>
               <input
                 type="text"
                 placeholder="Garnish"
@@ -121,7 +122,7 @@ export default function AddCocktail(props) {
               />
             </label>
             <label>
-              <span className="visually-hidden">Preparation</span>
+              <span className="visuallyHidden">Preparation</span>
               <textarea
                 name="preparation"
                 placeholder="Preparation"
@@ -129,14 +130,16 @@ export default function AddCocktail(props) {
               />
             </label>
             <label>
-              <span className="visually-hidden">Ingredients</span>
+              <span className="visuallyHidden">Ingredients</span>
               <textarea
                 name="ingredients"
                 placeholder="Ingredients"
                 onChange={handleIngredientsChange}
               />
             </label>
-            <button type="submit">Submit</button>
+            <button type="submit" className={styles.button}>
+              Submit
+            </button>
           </form>
         );
       }}

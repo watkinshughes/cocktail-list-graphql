@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Query } from "react-apollo";
 import { gql } from "apollo-boost";
+import styles from "./styles.module.css";
 
 const getCocktailDetails = gql`
   query($id: ID) {
@@ -29,9 +30,9 @@ export default function CocktailDetails(props) {
         if (loading) return null;
         if (error) return `Error: ${error}`;
         return (
-          <article>
+          <article className={styles.cocktailDetails}>
             <h1>{data.cocktail.name}</h1>
-            <div className="display-linebreak">{data.cocktail.ingredients}</div>
+            <div className="displayLinebreak">{data.cocktail.ingredients}</div>
             <p>{data.cocktail.preparation}</p>
             <p>{data.cocktail.garnish}</p>
             <h2>

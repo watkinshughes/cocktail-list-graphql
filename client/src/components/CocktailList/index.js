@@ -1,8 +1,10 @@
 import React from "react";
 import { gql } from "apollo-boost";
 import { graphql } from "react-apollo";
+import Cocktail from "../Cocktail";
+import styles from "./styles.module.css";
 
-const getCocktailsQuery = gql`
+const GET_COCKTAIL_NAMES = gql`
   {
     cocktails {
       id
@@ -17,20 +19,20 @@ function CocktailList(props) {
     if (data.loading) {
       return (
         <div className="loading">
-          <span className="visually-hidden">Loading</span>
+          <span className="visuallyHidden">Loading</span>
         </div>
       );
     } else {
       return data.cocktails.map(cocktail => {
-        return <li key={cocktail.id}>{cocktail.name}</li>;
+        return (
+          <Cocktail key={cocktail.id} id={cocktail.id} name={cocktail.name} />
+        );
       });
     }
   };
   return (
-    <div>
-      <ul id="cocktailList">{displayCocktails()}</ul>
-    </div>
+    <section className={styles.cocktailList}>{displayCocktails()}</section>
   );
 }
 
-export default graphql(getCocktailsQuery)(CocktailList);
+export default graphql(GET_COCKTAIL_NAMES)(CocktailList);

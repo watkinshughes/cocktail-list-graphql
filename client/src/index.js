@@ -6,7 +6,7 @@ import "./styles.css";
 import App from "./containers/App";
 
 const client = new ApolloClient({
-  uri: "https://cocktail-list-api.appspot.com/graphql"
+  uri: process.env.REACT_APP_API_URI
 });
 
 ReactDOM.render(
