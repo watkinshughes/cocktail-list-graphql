@@ -4,7 +4,7 @@ import { ApolloProvider } from "react-apollo";
 import CocktailList from "./components/CocktailList";
 
 const client = new ApolloClient({
-  uri: "http://localhost:4000/graphql"
+  uri: "https://cocktail-list-api.appspot.com/graphql"
 });
 
 export default function App() {
