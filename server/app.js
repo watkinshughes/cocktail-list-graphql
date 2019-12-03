@@ -14,7 +14,6 @@ mongoose.connection.once("open", () => {
   console.log("connected to database");
 });
 
-// bind express with graphql
 app.use(
   "/graphql",
   graphqlHTTP({
@@ -23,6 +22,6 @@ app.use(
   })
 );
 
-app.listen(4000, () => {
-  console.log("now listening for requests on port 4000");
+app.listen(8080, () => {
+  console.log("now listening for requests on port 8080");
 });
