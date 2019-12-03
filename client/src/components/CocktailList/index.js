@@ -14,8 +14,11 @@ const GET_COCKTAIL_NAMES = gql`
 `;
 
 function CocktailList(props) {
-  const displayCocktails = () => {
-    const data = props.data;
+  const filterList = () => {
+    return true;
+  };
+
+  const displayCocktails = data => {
     if (data.loading) {
       return (
         <div className="loading">
@@ -30,8 +33,26 @@ function CocktailList(props) {
       });
     }
   };
+
   return (
-    <section className={styles.cocktailList}>{displayCocktails()}</section>
+    <section className={styles.cocktailList}>
+      <form>
+        <fieldset>
+          <label>
+            <span className="visuallyHidden">
+              Filter by name or search by ingredient
+            </span>
+            <input
+              type="text"
+              className="Search"
+              placeholder="Search by ingredient"
+              onChange={filterList}
+            />
+          </label>
+        </fieldset>
+      </form>
+      {displayCocktails(props.data)}
+    </section>
   );
 }
 

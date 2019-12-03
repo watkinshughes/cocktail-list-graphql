@@ -9,8 +9,6 @@ const client = new ApolloClient({
   uri: process.env.REACT_APP_API_URI
 });
 
-console.log(process.env.REACT_APP_API_URI);
-
 ReactDOM.render(
   <ApolloProvider client={client}>
     <App />
