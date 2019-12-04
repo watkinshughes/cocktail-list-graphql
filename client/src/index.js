@@ -1,7 +1,8 @@
 import React from "react";
-import {render} from "react-dom";
+import { render } from "react-dom";
 import ApolloClient from "apollo-boost";
-import { ApolloProvider } from "@apollo/react-hooks";
+import { ApolloProvider } from "react-apollo";
+import { ApolloProvider as ApolloHooksProvider } from "@apollo/react-hooks";
 import "./styles.css";
 import App from "./containers/App";
 
@@ -11,7 +12,9 @@ const client = new ApolloClient({
 
 render(
   <ApolloProvider client={client}>
-    <App />
+    <ApolloHooksProvider client={client}>
+      <App />
+    </ApolloHooksProvider>
   </ApolloProvider>,
   document.getElementById("root")
 );

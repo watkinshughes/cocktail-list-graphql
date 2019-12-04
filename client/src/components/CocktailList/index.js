@@ -15,7 +15,7 @@ const GET_COCKTAILS = gql`
 
 export default function CocktailList() {
   const { loading, error, data } = useQuery(GET_COCKTAILS);
-  const [dataSorted, setDataSorted] = useState(false);
+  const [sortedData, setSortedData] = useState(false);
 
   const sortData = data => {
     return data.sort(function(a, b) {
@@ -32,12 +32,12 @@ export default function CocktailList() {
   useEffect(() => {
     if (data) {
       sortData(data.cocktails);
-      setDataSorted(true);
+      setSortedData(true);
     }
   }, [data]);
 
   const filterData = event => {
-    const typedWord = event.target.value;
+    // const typedWord = event.target.value;
     debugger;
   };
 
@@ -69,7 +69,7 @@ export default function CocktailList() {
           </label>
         </fieldset>
       </form>
-      {dataSorted ? (
+      {sortedData ? (
         data.cocktails.map(cocktail => {
           return (
             <Cocktail key={cocktail.id} id={cocktail.id} name={cocktail.name} />
