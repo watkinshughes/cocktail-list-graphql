@@ -9,13 +9,14 @@ const GET_COCKTAILS = gql`
     cocktails {
       id
       name
+      ingredients
     }
   }
 `;
 
 export default function CocktailList() {
   const { loading, error, data } = useQuery(GET_COCKTAILS);
-  const [sortedData, setSortedData] = useState(false);
+  const [sortedData, setSortedData] = useState("");
 
   const sortData = data => {
     return data.sort(function(a, b) {
@@ -32,13 +33,22 @@ export default function CocktailList() {
   useEffect(() => {
     if (data) {
       sortData(data.cocktails);
-      setSortedData(true);
+      setSortedData(data.cocktails);
     }
   }, [data]);
 
   const filterData = event => {
-    // const typedWord = event.target.value;
-    debugger;
+    if (sortedData) {
+      const typedWord = new RegExp(`\\b${event.target.value.toLowerCase()}\\b`);
+      const filteredData = sortedData.filter(node => {
+        return (
+          node.name.toLowerCase().search(typedWord) !== -1 ||
+          node.ingredients.toLowerCase().search(typedWord) !== -1
+        );
+      });
+      debugger;
+      setSortedData(filteredData);
+    }
   };
 
   if (loading) {
@@ -70,7 +80,7 @@ export default function CocktailList() {
         </fieldset>
       </form>
       {sortedData ? (
-        data.cocktails.map(cocktail => {
+        sortedData.map(cocktail => {
           return (
             <Cocktail key={cocktail.id} id={cocktail.id} name={cocktail.name} />
           );
