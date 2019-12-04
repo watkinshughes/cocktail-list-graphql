@@ -17,6 +17,7 @@ const GET_COCKTAILS = gql`
 export default function CocktailList() {
   const { loading, error, data } = useQuery(GET_COCKTAILS);
   const [sortedData, setSortedData] = useState("");
+  const [typedWordLength, setTypedWordLength] = useState(0);
 
   const sortData = data => {
     return data.sort(function(a, b) {
@@ -38,16 +39,21 @@ export default function CocktailList() {
   }, [data]);
 
   const filterData = event => {
-    if (sortedData) {
-      const typedWord = new RegExp(`\\b${event.target.value.toLowerCase()}\\b`);
-      const filteredData = sortedData.filter(node => {
+    let filteredData = sortedData;
+    const typedWord = event.target.value.toLowerCase();
+    setTypedWordLength(typedWord.length);
+    if (typedWordLength < typedWord.length) {
+      filteredData = filteredData.filter(cocktail => {
         return (
-          node.name.toLowerCase().search(typedWord) !== -1 ||
-          node.ingredients.toLowerCase().search(typedWord) !== -1
+          cocktail.name.toLowerCase().search(typedWord) !== -1 ||
+          cocktail.ingredients.toLowerCase().search(typedWord) !== -1
         );
       });
-      debugger;
       setSortedData(filteredData);
+    } else {
+      // event.target.value = "";
+      sortData(data.cocktails);
+      setSortedData(data.cocktails);
     }
   };
 
@@ -68,12 +74,12 @@ export default function CocktailList() {
         <fieldset>
           <label>
             <span className="visuallyHidden">
-              Filter by name or search by ingredient
+              Filter by cocktail name or search by ingredient
             </span>
             <input
               type="text"
               className="Search"
-              placeholder="Search by ingredient"
+              placeholder="Filter by cocktail name or search by ingredient"
               onChange={filterData}
             />
           </label>
