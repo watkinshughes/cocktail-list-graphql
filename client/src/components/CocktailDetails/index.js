@@ -1,12 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Query } from "react-apollo";
+import { useQuery } from "@apollo/react-hooks";
 import { gql } from "apollo-boost";
 import styles from "./styles.module.css";
 
-const getCocktailDetails = gql`
-  query($id: ID) {
-    cocktail(id: $id) {
+const GET_COCKTAIL_DETAILS = gql`
+  query($cocktailId: ID) {
+    cocktail(id: $cocktailId) {
       id
       name
       glass
@@ -19,29 +19,32 @@ const getCocktailDetails = gql`
 `;
 
 export default function CocktailDetails(props) {
+  const id = props.id;
+  const { loading, error, data } = useQuery(GET_COCKTAIL_DETAILS, {
+    variables: { id }
+  });
+
+  if (loading) {
+    return (
+      <div className="loading">
+        <span className="visuallyHidden">Loading</span>
+      </div>
+    );
+  }
+  if (error) {
+    return <p>Error</p>;
+  }
+
   return (
-    <Query
-      query={getCocktailDetails}
-      variables={{
-        id: props.match.params.id
-      }}
-    >
-      {({ loading, error, data }) => {
-        if (loading) return null;
-        if (error) return `Error: ${error}`;
-        return (
-          <article className={styles.cocktailDetails}>
-            <h1>{data.cocktail.name}</h1>
-            <div className="displayLinebreak">{data.cocktail.ingredients}</div>
-            <p>{data.cocktail.preparation}</p>
-            <p>{data.cocktail.garnish}</p>
-            <h2>
-              <em>{data.cocktail.category}</em>
-            </h2>
-            <Link to="/">← Back</Link>
-          </article>
-        );
-      }}
-    </Query>
+    <article className={styles.cocktailDetails}>
+      <h1>{data.cocktail.name}</h1>
+      <div className="displayLinebreak">{data.cocktail.ingredients}</div>
+      <p>{data.cocktail.preparation}</p>
+      <p>{data.cocktail.garnish}</p>
+      <h2>
+        <em>{data.cocktail.category}</em>
+      </h2>
+      <Link to="/">← Back</Link>
+    </article>
   );
 }

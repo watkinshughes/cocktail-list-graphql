@@ -1,10 +1,10 @@
 import React from "react";
 import { gql } from "apollo-boost";
-import { graphql } from "react-apollo";
+import { useQuery } from '@apollo/react-hooks';
 import Cocktail from "../Cocktail";
 import styles from "./styles.module.css";
 
-const GET_COCKTAIL_NAMES = gql`
+const GET_COCKTAILS = gql`
   {
     cocktails {
       id
@@ -13,27 +13,23 @@ const GET_COCKTAIL_NAMES = gql`
   }
 `;
 
-function CocktailList(props) {
+export default function CocktailList() {
+  const { loading, error, data } = useQuery(GET_COCKTAILS);
+  
   const filterList = () => {
     return true;
-  };
+  }
 
-  const displayCocktails = data => {
-    if (data.loading) {
-      return (
-        <div className="loading">
-          <span className="visuallyHidden">Loading</span>
-        </div>
-      );
-    } else {
-      return data.cocktails.map(cocktail => {
-        return (
-          <Cocktail key={cocktail.id} id={cocktail.id} name={cocktail.name} />
-        );
-      });
-    }
-  };
-
+  if (loading) {
+    return (
+      <div className="loading">
+        <span className="visuallyHidden">Loading</span>
+    </div>)
+  }
+  if (error) {
+    return <p>Error</p>
+  }
+  
   return (
     <section className={styles.cocktailList}>
       <form>
@@ -51,9 +47,11 @@ function CocktailList(props) {
           </label>
         </fieldset>
       </form>
-      {displayCocktails(props.data)}
-    </section>
-  );
+      { data.cocktails.map(cocktail => {
+        return (
+         <Cocktail key={cocktail.id} id={cocktail.id} name={cocktail.name} />
+        );
+        })}
+        </section>
+    )
 }
-
-export default graphql(GET_COCKTAIL_NAMES)(CocktailList);
