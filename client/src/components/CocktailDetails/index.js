@@ -5,8 +5,8 @@ import { gql } from "apollo-boost";
 import styles from "./styles.module.css";
 
 const GET_COCKTAIL_DETAILS = gql`
-  query($cocktailId: ID) {
-    cocktail(id: $cocktailId) {
+  query($id: ID) {
+    cocktail(id: $id) {
       id
       name
       glass
@@ -19,7 +19,7 @@ const GET_COCKTAIL_DETAILS = gql`
 `;
 
 export default function CocktailDetails(props) {
-  const id = props.id;
+  const id = props.match.params.id;
   const { loading, error, data } = useQuery(GET_COCKTAIL_DETAILS, {
     variables: { id }
   });
