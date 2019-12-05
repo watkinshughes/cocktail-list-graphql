@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useQuery } from "@apollo/react-hooks";
 import { gql } from "apollo-boost";
 import styles from "./styles.module.css";
@@ -18,8 +18,8 @@ const GET_COCKTAIL_DETAILS = gql`
   }
 `;
 
-export default function CocktailDetails(props) {
-  const id = props.match.params.id;
+export default function CocktailDetails() {
+  const { id } = useParams();
   const { loading, error, data } = useQuery(GET_COCKTAIL_DETAILS, {
     variables: { id }
   });

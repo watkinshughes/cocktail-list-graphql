@@ -1,7 +1,6 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { Link } from "react-router-native";
-import Title from "../Title";
 
 export default function Header() {
   return (
