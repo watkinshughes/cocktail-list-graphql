@@ -51,7 +51,6 @@ export default function CocktailList() {
       });
       setSortedData(filteredData);
     } else {
-      // event.target.value = "";
       sortData(data.cocktails);
       setSortedData(data.cocktails);
     }

@@ -16,6 +16,6 @@ const styles = StyleSheet.create({
   cocktail: {
     marginVertical: 20,
     padding: 20,
-    background: "#fff"
+    backgroundColor: "#fff"
   }
 });
