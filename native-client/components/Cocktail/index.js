@@ -14,7 +14,7 @@ export default function Cocktail(props) {
 
 const styles = StyleSheet.create({
   cocktail: {
-    marginVertical: 20,
+    marginVertical: 10,
     padding: 20,
     backgroundColor: "#fff"
   }

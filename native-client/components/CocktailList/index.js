@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, ScrollView, Text, StyleSheet, TextInput } from "react-native";
 import { gql } from "apollo-boost";
 import { useQuery } from "@apollo/react-hooks";
 import Cocktail from "../Cocktail";
@@ -38,7 +38,7 @@ export default function CocktailList() {
     }
   }, [data]);
 
-  const filterData = event => {
+  const filterData = (event = {}) => {
     let filteredData = sortedData;
     const typedWord = event.target.value.toLowerCase();
     setTypedWordLength(typedWord.length);
@@ -68,22 +68,15 @@ export default function CocktailList() {
   }
 
   return (
-    <View style={styles.cocktailList}>
-      {/* <form>
-        <fieldset>
-          <label>
-            <span>
-              Filter by cocktail name or search by ingredient
-            </span>
-            <input
-              type="text"
-              style="Search"
-              placeholder="Filter by cocktail name or search by ingredient"
-              onChange={filterData}
-            />
-          </label>
-        </fieldset>
-      </form> */}
+    <ScrollView style={styles.cocktailList}>
+      <TextInput
+        style={styles.input}
+        type="text"
+        style="Search"
+        placeholder="Filter by cocktail name or search by ingredient"
+        onChange={filterData}
+      />
+
       {sortedData ? (
         sortedData.map(cocktail => {
           return (
@@ -93,10 +86,16 @@ export default function CocktailList() {
       ) : (
         <Text />
       )}
-    </View>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
+  input: {
+    backgroundColor: "#fff",
+    marginVertical: 10,
+    borderColor: "gray",
+    borderWidth: 1
+  },
   cocktailList: {}
 });
