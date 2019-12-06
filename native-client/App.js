@@ -1,6 +1,6 @@
 import React from "react";
 import { View, StyleSheet } from "react-native";
-import { NativeRouter, Route } from "react-router-native";
+import { NativeRouter, Route, Switch } from "react-router-native";
 import ApolloClient from "apollo-boost";
 import { ApolloProvider } from "react-apollo";
 import { ApolloProvider as ApolloHooksProvider } from "@apollo/react-hooks";
@@ -22,11 +22,11 @@ export default function App() {
         <View style={styles.app}>
           <NativeRouter>
             <Header />
-            <View>
+            <Switch>
               <Route exact path="/" component={CocktailList} />
               <Route path="/add-cocktail" component={AddCocktail} />
               <Route path="/:id" component={CocktailDetails} />
-            </View>
+            </Switch>
           </NativeRouter>
         </View>
       </ApolloHooksProvider>
