@@ -70,9 +70,8 @@ export default function CocktailList() {
   return (
     <ScrollView style={styles.cocktailList}>
       <TextInput
-        style={styles.input}
+        style={styles.searchBox}
         type="text"
-        style="Search"
         placeholder="Filter by cocktail name or search by ingredient"
         onChange={filterData}
       />
@@ -91,11 +90,11 @@ export default function CocktailList() {
 }
 
 const styles = StyleSheet.create({
-  input: {
+  searchBox: {
     backgroundColor: "#fff",
-    marginVertical: 10,
-    borderColor: "gray",
-    borderWidth: 1
+    height: 40,
+    padding: 10,
+    marginVertical: 10
   },
   cocktailList: {}
 });
