@@ -120,12 +120,11 @@ export default function AddCocktail(props) {
               </select>
             </label>
             <label>
-              <span className="visuallyHidden">Garnish</span>
-              <input
-                type="text"
-                placeholder="Garnish"
-                name="granish"
-                onChange={handleGarnishChange}
+              <span className="visuallyHidden">Ingredients</span>
+              <textarea
+                name="ingredients"
+                placeholder="Ingredients"
+                onChange={handleIngredientsChange}
               />
             </label>
             <label>
@@ -137,11 +136,12 @@ export default function AddCocktail(props) {
               />
             </label>
             <label>
-              <span className="visuallyHidden">Ingredients</span>
-              <textarea
-                name="ingredients"
-                placeholder="Ingredients"
-                onChange={handleIngredientsChange}
+              <span className="visuallyHidden">Garnish</span>
+              <input
+                type="text"
+                placeholder="Garnish"
+                name="granish"
+                onChange={handleGarnishChange}
               />
             </label>
             <button type="submit" className={styles.button}>
