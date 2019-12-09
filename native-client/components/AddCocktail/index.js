@@ -118,13 +118,13 @@ export default function AddCocktail(props) {
               prompt="Glass"
             >
               <Picker.Item label="Glass" value="" />
-              <Picker.Item label="Martini" value="martini" />
-              <Picker.Item label="Coup" value="coup" />
-              <Picker.Item label="Old-fashioned" value="old-fashioned" />
-              <Picker.Item label="Collins" value="collins" />
-              <Picker.Item label="Highball" value="highball" />
-              <Picker.Item label="Champagne" value="champagne" />
-              <Picker.Item label="Margarita" value="margarita" />
+              <Picker.Item label="Martini" value="Martini" />
+              <Picker.Item label="Coup" value="Coup" />
+              <Picker.Item label="Old-fashioned" value="Old-fashioned" />
+              <Picker.Item label="Collins" value="Collins" />
+              <Picker.Item label="Highball" value="Highball" />
+              <Picker.Item label="Champagne" value="Champagne" />
+              <Picker.Item label="Margarita" value="Margarita" />
             </Picker>
             <TextInput
               style={styles.textArea}

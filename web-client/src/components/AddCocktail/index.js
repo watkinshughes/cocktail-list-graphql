@@ -110,13 +110,13 @@ export default function AddCocktail(props) {
               <span className="visuallyHidden">Glass</span>
               <select name="glass" onChange={handleGlassChange}>
                 <option value="">Select Glass</option>
-                <option value="martini">Martini</option>
-                <option value="coup">Coup</option>
-                <option value="old-fashioned">Old-fashioned</option>
-                <option value="collins">Collins</option>
-                <option value="highball">Highball</option>
-                <option value="champagne">Champagne</option>
-                <option value="margarita">Margarita</option>
+                <option value="Martini">Martini</option>
+                <option value="Coup">Coup</option>
+                <option value="Old-fashioned">Old-fashioned</option>
+                <option value="Collins">Collins</option>
+                <option value="Highball">Highball</option>
+                <option value="Champagne">Champagne</option>
+                <option value="Margarita">Margarita</option>
               </select>
             </label>
             <label>
