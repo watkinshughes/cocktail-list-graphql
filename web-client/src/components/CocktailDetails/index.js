@@ -41,6 +41,7 @@ export default function CocktailDetails() {
       <div className="displayLinebreak">{data.cocktail.ingredients}</div>
       <p>{data.cocktail.preparation}</p>
       <p>{data.cocktail.garnish}</p>
+      <p>{data.cocktail.glass}</p>
       <h2>
         <em>{data.cocktail.category}</em>
       </h2>

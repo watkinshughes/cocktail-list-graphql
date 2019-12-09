@@ -41,6 +41,7 @@ export default function CocktailDetails({ match }) {
       <Text style={styles.displayLinebreak}>{data.cocktail.ingredients}</Text>
       <Text>{data.cocktail.preparation}</Text>
       <Text>{data.cocktail.garnish}</Text>
+      <Text>{data.cocktail.glass}</Text>
       <Text>{data.cocktail.category}</Text>
       <Link to="/">
         <Text>← Back</Text>
