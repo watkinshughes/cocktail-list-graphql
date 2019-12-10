@@ -111,7 +111,7 @@ export default function AddCocktail(props) {
               <select name="glass" onChange={handleGlassChange}>
                 <option value="">Select Glass</option>
                 <option value="Martini">Martini</option>
-                <option value="Coup">Coup</option>
+                <option value="Coupe">Coupe</option>
                 <option value="Old-fashioned">Old-fashioned</option>
                 <option value="Collins">Collins</option>
                 <option value="Highball">Highball</option>

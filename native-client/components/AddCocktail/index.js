@@ -119,7 +119,7 @@ export default function AddCocktail(props) {
             >
               <Picker.Item label="Glass" value="" />
               <Picker.Item label="Martini" value="Martini" />
-              <Picker.Item label="Coup" value="Coup" />
+              <Picker.Item label="Coupe" value="Coupe" />
               <Picker.Item label="Old-fashioned" value="Old-fashioned" />
               <Picker.Item label="Collins" value="Collins" />
               <Picker.Item label="Highball" value="Highball" />
