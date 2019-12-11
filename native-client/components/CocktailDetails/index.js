@@ -40,8 +40,8 @@ export default function CocktailDetails({ match }) {
       <Text>{data.cocktail.name}</Text>
       <Text style={styles.displayLinebreak}>{data.cocktail.ingredients}</Text>
       <Text>{data.cocktail.preparation}</Text>
-      <Text>{data.cocktail.garnish}</Text>
-      <Text>{data.cocktail.glass}</Text>
+      <Text>Standard garnish: {data.cocktail.garnish}</Text>
+      <Text>Glassware: {data.cocktail.glass}</Text>
       <Text>{data.cocktail.category}</Text>
       <Link to="/">
         <Text>← Back</Text>
