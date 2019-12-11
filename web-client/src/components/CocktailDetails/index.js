@@ -40,8 +40,12 @@ export default function CocktailDetails() {
       <h1>{data.cocktail.name}</h1>
       <div className="displayLinebreak">{data.cocktail.ingredients}</div>
       <p>{data.cocktail.preparation}</p>
-      <p>{data.cocktail.garnish}</p>
-      <p>{data.cocktail.glass}</p>
+      <p>
+        <strong>Standard garnish:</strong> {data.cocktail.garnish}
+      </p>
+      <p>
+        <strong>Glassware:</strong> {data.cocktail.glass}
+      </p>
       <h2>
         <em>{data.cocktail.category}</em>
       </h2>
