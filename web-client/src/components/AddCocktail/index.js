@@ -8,9 +8,10 @@ const ADD_COCKTAIL = gql`
     $name: String!
     $ingredients: String!
     $glass: String!
-    $garnish: String!
+    $garnish: String
     $category: String!
     $preparation: String!
+    $published: Boolean!
   ) {
     addCocktail(
       name: $name
@@ -19,6 +20,7 @@ const ADD_COCKTAIL = gql`
       garnish: $garnish
       category: $category
       preparation: $preparation
+      published: $published
     ) {
       name
       ingredients
@@ -71,7 +73,9 @@ export default function AddCocktail(props) {
         glass: glass,
         garnish: garnish,
         category: category,
-        preparation: preparation
+        preparation: preparation,
+        // eventually published will be false by default
+        published: true
       }}
       onCompleted={() => {
         props.history.push("/");
