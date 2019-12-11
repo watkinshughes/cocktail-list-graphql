@@ -38,6 +38,9 @@ export default function CocktailDetails() {
   return (
     <article className={styles.cocktailDetails}>
       <h1>{data.cocktail.name}</h1>
+      <h2>
+        <em>{data.cocktail.category}</em>
+      </h2>
       <div className="displayLinebreak">{data.cocktail.ingredients}</div>
       <p>{data.cocktail.preparation}</p>
       <p>
@@ -46,9 +49,6 @@ export default function CocktailDetails() {
       <p>
         <strong>Glassware:</strong> {data.cocktail.glass}
       </p>
-      <h2>
-        <em>{data.cocktail.category}</em>
-      </h2>
       <Link to="/">← Back</Link>
     </article>
   );
