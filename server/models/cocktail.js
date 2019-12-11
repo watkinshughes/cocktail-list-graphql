@@ -7,7 +7,8 @@ const cocktailSchema = new Schema({
   glass: String,
   garnish: String,
   preparation: String,
-  ingredients: String
+  ingredients: String,
+  published: Boolean
 });
 
 module.exports = mongoose.model("Cocktail", cocktailSchema);
