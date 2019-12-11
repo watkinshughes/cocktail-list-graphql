@@ -38,7 +38,7 @@ const RootQuery = new GraphQLObjectType({
     cocktails: {
       type: new GraphQLList(CocktailType),
       resolve(parent, args) {
-        return Cocktail.find({});
+        return Cocktail.find({ published: true });
       }
     }
   }
