@@ -45,12 +45,18 @@ export default function AddCocktail(props) {
     contact: ""
   });
 
-  const handleInputChange = prop => event => {
-    const value = event.target.value;
+  const handleInputChange = prop => text => {
+    const value = text.nativeEvent.text;
+    setValues({ ...values, [prop]: value });
+  };
+
+  const handlePickerChange = prop => itemValue => {
+    const value = itemValue;
     setValues({ ...values, [prop]: value });
   };
 
   const isButtonDisabled = () => {
+    console.log(values.name.length);
     if (
       values.name.length > 0 &&
       values.preparation.length > 0 &&
@@ -94,7 +100,7 @@ export default function AddCocktail(props) {
             <Picker
               style={styles.select}
               selectedValue={values.category}
-              onValueChange={handleInputChange("cocktail")}
+              onValueChange={handlePickerChange("category")}
               prompt="Category"
             >
               <Picker.Item label="Category" value="" />
@@ -116,7 +122,7 @@ export default function AddCocktail(props) {
             <Picker
               style={styles.select}
               selectedValue={values.glass}
-              onValueChange={handleInputChange("glass")}
+              onValueChange={handlePickerChange("glass")}
               prompt="Glass"
             >
               <Picker.Item label="Glass" value="" />
@@ -148,6 +154,13 @@ export default function AddCocktail(props) {
               placeholder="Garnish"
               name="granish"
               onChange={handleInputChange("garnish")}
+            />
+            <TextInput
+              style={styles.textInput}
+              type="text"
+              placeholder="Contact Email"
+              name="contact"
+              onChange={handleInputChange("contact")}
             />
             <Button
               style={styles.button}

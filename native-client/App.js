@@ -10,6 +10,7 @@ import Header from "./components/Header";
 import CocktailList from "./components/CocktailList";
 import AddCocktail from "./components/AddCocktail";
 import CocktailDetails from "./components/CocktailDetails";
+import SubmissionConfirmation from "./components/SubmissionConfirmation";
 
 const client = new ApolloClient({
   uri: API_URI
@@ -25,6 +26,7 @@ export default function App() {
             <Switch>
               <Route exact path="/" component={CocktailList} />
               <Route path="/add-cocktail" component={AddCocktail} />
+              <Route path="/thank-you" component={SubmissionConfirmation} />
               <Route path="/:id" component={CocktailDetails} />
             </Switch>
           </NativeRouter>
