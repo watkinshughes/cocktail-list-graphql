@@ -52,7 +52,13 @@ export default function AddCocktail(props) {
   };
 
   const isButtonDisabled = () => {
-    if (values.honey.length === 0 && values.name.length > 0) {
+    if (
+      values.honey.length === 0 &&
+      values.name.length > 0 &&
+      values.preparation.length > 0 &&
+      values.ingredients.length > 0 &&
+      values.contact.length > 0
+    ) {
       return false;
     } else {
       return true;
