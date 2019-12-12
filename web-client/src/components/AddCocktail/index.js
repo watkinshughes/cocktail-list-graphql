@@ -52,7 +52,7 @@ export default function AddCocktail(props) {
   };
 
   const isButtonDisabled = () => {
-    if (values.honey.length === 0) {
+    if (values.honey.length === 0 && values.name.length > 0) {
       return false;
     } else {
       return true;
@@ -74,6 +74,9 @@ export default function AddCocktail(props) {
       }}
       onCompleted={() => {
         props.history.push("/thank-you");
+      }}
+      onError={() => {
+        props.history.push("/something-went-wrong");
       }}
     >
       {(addCocktail, { loading, error }) => {
