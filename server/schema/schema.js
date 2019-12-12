@@ -21,6 +21,7 @@ const CocktailType = new GraphQLObjectType({
     garnish: { type: GraphQLString },
     preparation: { type: GraphQLString },
     ingredients: { type: GraphQLString },
+    contact: { type: GraphQLString },
     published: { type: GraphQLBoolean }
   })
 });
@@ -56,6 +57,7 @@ const Mutation = new GraphQLObjectType({
         garnish: { type: GraphQLString },
         preparation: { type: new GraphQLNonNull(GraphQLString) },
         ingredients: { type: new GraphQLNonNull(GraphQLString) },
+        contact: { type: new GraphQLNonNull(GraphQLString) },
         published: { type: new GraphQLNonNull(GraphQLBoolean) }
       },
       resolve(parent, args) {
@@ -66,6 +68,7 @@ const Mutation = new GraphQLObjectType({
           garnish: args.garnish,
           preparation: args.preparation,
           ingredients: args.ingredients,
+          contact: args.contact,
           published: args.published
         });
         return cocktail.save();

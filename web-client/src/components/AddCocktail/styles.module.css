@@ -15,3 +15,8 @@
   text-indent: 1em;
   cursor: pointer;
 }
+
+button:disabled,
+.button[disabled] {
+  opacity: 0.3;
+}

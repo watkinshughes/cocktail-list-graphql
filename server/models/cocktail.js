@@ -8,6 +8,7 @@ const cocktailSchema = new Schema({
   garnish: String,
   preparation: String,
   ingredients: String,
+  contact: String,
   published: Boolean
 });
 

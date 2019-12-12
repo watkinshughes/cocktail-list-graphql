@@ -5,6 +5,7 @@ import Header from "../../components/Header";
 import CocktailList from "../../components/CocktailList";
 import CocktailDetails from "../../components/CocktailDetails";
 import AddCocktail from "../../components/AddCocktail";
+import SubmissionConfirmation from "../../components/SubmissionConfirmation";
 
 export default function App() {
   return (
@@ -14,6 +15,7 @@ export default function App() {
         <Switch>
           <Route exact path="/" component={CocktailList} />
           <Route path="/add-cocktail" component={AddCocktail} />
+          <Route path="/thank-you" component={SubmissionConfirmation} />
           <Route path="/:id" component={CocktailDetails} />
         </Switch>
       </Router>
