@@ -21,7 +21,7 @@ const ADD_COCKTAIL = gql`
       garnish: $garnish
       category: $category
       preparation: $preparation
-      contact: contact
+      contact: $contact
       published: $published
     ) {
       name
@@ -52,26 +52,7 @@ export default function AddCocktail(props) {
   };
 
   const isButtonDisabled = () => {
-    const {
-      name,
-      glass,
-      category,
-      garnish,
-      preparation,
-      ingredients,
-      contact,
-      honey
-    } = values;
-    if (
-      name.length > 0 &&
-      glass.length > 0 &&
-      category.length > 0 &&
-      garnish.length > 0 &&
-      preparation.length > 0 &&
-      ingredients.length > 0 &&
-      contact.length > 0 &&
-      honey.length === 0
-    ) {
+    if (values.honey.length === 0) {
       return false;
     } else {
       return true;
@@ -101,11 +82,11 @@ export default function AddCocktail(props) {
         return (
           <form onSubmit={addCocktail} className={styles.form}>
             <label>
-              <span className="visuallyHidden">Name</span>
+              <span className="visuallyHidden">Cocktail Name</span>
               <input
                 type="text"
                 name="name"
-                placeholder="Name"
+                placeholder="Cocktail Name"
                 onChange={handleInputChange("name")}
               />
             </label>
@@ -176,7 +157,6 @@ export default function AddCocktail(props) {
             </label>
             <input
               type="hidden"
-              placeholder="Honey"
               name="honey"
               onChange={handleInputChange("honey")}
             />
