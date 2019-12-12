@@ -6,10 +6,10 @@ export default function Header() {
   return (
     <View style={styles.header}>
       <Link to="/" style={styles.homeLink}>
-        <Text styles={styles.siteTitle}>A Proper Cocktail List</Text>
+        <Text styles={styles.siteTitle}>A Proper List</Text>
       </Link>
       <Link style={styles.menu} to="/add-cocktail">
-        <Text style={styles.text}>Add cocktail</Text>
+        <Text style={styles.text}>Submit cocktail</Text>
       </Link>
     </View>
   );
