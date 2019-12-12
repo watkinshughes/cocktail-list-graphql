@@ -81,9 +81,6 @@ export default function AddCocktail(props) {
       onCompleted={() => {
         props.history.push("/thank-you");
       }}
-      onError={() => {
-        props.history.push("/something-went-wrong");
-      }}
     >
       {(addCocktail, { loading, error }) => {
         if (loading) return null;
