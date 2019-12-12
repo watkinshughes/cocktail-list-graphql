@@ -69,7 +69,7 @@ export default function CocktailList() {
 
   return (
     <section className={styles.cocktailList}>
-      <form>
+      <form className={styles.search}>
         <fieldset>
           <label>
             <span className="visuallyHidden">
