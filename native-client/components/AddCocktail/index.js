@@ -8,9 +8,10 @@ const ADD_COCKTAIL = gql`
     $name: String!
     $ingredients: String!
     $glass: String!
-    $garnish: String!
+    $garnish: String
     $category: String!
     $preparation: String!
+    $contact: String!
     $published: Boolean!
   ) {
     addCocktail(
@@ -20,6 +21,7 @@ const ADD_COCKTAIL = gql`
       garnish: $garnish
       category: $category
       preparation: $preparation
+      contact: $contact
       published: $published
     ) {
       name
@@ -33,52 +35,48 @@ const ADD_COCKTAIL = gql`
 `;
 
 export default function AddCocktail(props) {
-  const [name, setName] = useState("");
-  const [glass, setGlass] = useState("");
-  const [category, setCategory] = useState("");
-  const [garnish, setGarnish] = useState("");
-  const [preparation, setPreparation] = useState("");
-  const [ingredients, setIngredients] = useState("");
+  const [values, setValues] = useState({
+    name: "",
+    glass: "",
+    category: "",
+    garnish: "",
+    preparation: "",
+    ingredients: "",
+    contact: ""
+  });
 
-  const handleNameChange = text => {
-    setName(text.nativeEvent.text);
+  const handleInputChange = prop => event => {
+    const value = event.target.value;
+    setValues({ ...values, [prop]: value });
   };
 
-  const handleCategoryChange = itemValue => {
-    setCategory(itemValue);
+  const isButtonDisabled = () => {
+    if (
+      values.name.length > 0 &&
+      values.preparation.length > 0 &&
+      values.ingredients.length > 0 &&
+      values.contact.length > 0
+    ) {
+      return false;
+    } else {
+      return true;
+    }
   };
-
-  const handleGlassChange = itemValue => {
-    setGlass(itemValue);
-  };
-
-  const handleGarnishChange = text => {
-    setGarnish(text.nativeEvent.text);
-  };
-
-  const handlePreparationChange = text => {
-    setPreparation(text.nativeEvent.text);
-  };
-
-  const handleIngredientsChange = text => {
-    setIngredients(text.nativeEvent.text);
-  };
-
   return (
     <Mutation
       mutation={ADD_COCKTAIL}
       variables={{
-        name: name,
-        ingredients: ingredients,
-        glass: glass,
-        garnish: garnish,
-        category: category,
-        preparation: preparation
-        // eventually published will be false by default
-        published: true
+        name: values.name,
+        ingredients: values.ingredients,
+        glass: values.glass,
+        garnish: values.garnish,
+        category: values.category,
+        preparation: values.preparation,
+        contact: values.contact,
+        published: false
       }}
       onCompleted={() => {
-        props.history.push("/");
+        props.history.push("/thank-you");
       }}
     >
       {(addCocktail, { loading, error }) => {
@@ -90,13 +88,13 @@ export default function AddCocktail(props) {
               style={styles.textInput}
               type="text"
               name="name"
-              placeholder="Name"
-              onChange={handleNameChange}
+              placeholder="Cocktail Name"
+              onChange={handleInputChange("name")}
             />
             <Picker
               style={styles.select}
-              selectedValue={category}
-              onValueChange={handleCategoryChange}
+              selectedValue={values.category}
+              onValueChange={handleInputChange("cocktail")}
               prompt="Category"
             >
               <Picker.Item label="Category" value="" />
@@ -117,8 +115,8 @@ export default function AddCocktail(props) {
             </Picker>
             <Picker
               style={styles.select}
-              selectedValue={glass}
-              onValueChange={handleGlassChange}
+              selectedValue={values.glass}
+              onValueChange={handleInputChange("glass")}
               prompt="Glass"
             >
               <Picker.Item label="Glass" value="" />
@@ -135,26 +133,27 @@ export default function AddCocktail(props) {
               name="ingredients"
               placeholder="Ingredients"
               multiline={true}
-              onChange={handleIngredientsChange}
+              onChange={handleInputChange("ingredients")}
             />
             <TextInput
               style={styles.textArea}
               name="preparation"
               placeholder="Preparation"
               multiline={true}
-              onChange={handlePreparationChange}
+              onChange={handleInputChange("preparation")}
             />
             <TextInput
               style={styles.textInput}
               type="text"
               placeholder="Garnish"
               name="granish"
-              onChange={handleGarnishChange}
+              onChange={handleInputChange("garnish")}
             />
             <Button
               style={styles.button}
               onPress={addCocktail}
               title="Submit"
+              disabled={isButtonDisabled()}
             />
           </View>
         );
