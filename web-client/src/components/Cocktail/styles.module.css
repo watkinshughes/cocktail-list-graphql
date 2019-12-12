@@ -3,3 +3,17 @@
   padding: 20px;
   background: #fff;
 }
+
+.cocktail h1 {
+  display: flex;
+  width: 100%;
+}
+
+.cocktail span,
+.cocktail small {
+  width: 50%;
+}
+
+.cocktail small {
+  text-align: right;
+}
