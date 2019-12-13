@@ -1,5 +1,6 @@
 const graphql = require("graphql");
 const Cocktail = require("../models/cocktail");
+const sanitize = require("mongo-sanitize");
 
 const {
   GraphQLObjectType,
@@ -33,7 +34,8 @@ const RootQuery = new GraphQLObjectType({
       type: CocktailType,
       args: { id: { type: GraphQLID } },
       resolve(parent, args) {
-        return Cocktail.findById(args.id);
+        const cleanId = sanitize(args.id);
+        return Cocktail.findById(cleanId);
       }
     },
     cocktails: {
@@ -61,15 +63,24 @@ const Mutation = new GraphQLObjectType({
         published: { type: new GraphQLNonNull(GraphQLBoolean) }
       },
       resolve(parent, args) {
-        let cocktail = new Cocktail({
-          name: args.name,
-          category: args.category,
-          glass: args.glass,
-          garnish: args.garnish,
-          preparation: args.preparation,
-          ingredients: args.ingredients,
-          contact: args.contact,
-          published: args.published
+        const cleanName = sanitize(args.name);
+        const cleanCategory = sanitize(args.category);
+        const cleanGlass = sanitize(args.glass);
+        const cleanGarnish = sanitize(args.garnish);
+        const cleanPreparation = sanitize(args.preparation);
+        const cleanIngedients = sanitize(args.ingredients);
+        const cleanContact = sanitize(args.contact);
+        const cleanPublished = sanitize(args.published);
+
+        const cocktail = new Cocktail({
+          name: cleanName,
+          category: cleanCategory,
+          glass: cleanGlass,
+          garnish: cleanGarnish,
+          preparation: cleanPreparation,
+          ingredients: cleanIngedients,
+          contact: cleanContact,
+          published: cleanPublished
         });
         return cocktail.save();
       }
