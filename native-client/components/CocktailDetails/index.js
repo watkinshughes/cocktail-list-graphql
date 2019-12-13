@@ -37,12 +37,18 @@ export default function CocktailDetails({ match }) {
 
   return (
     <View style={styles.cocktailDetails}>
-      <Text>{data.cocktail.name}</Text>
-      <Text style={styles.displayLinebreak}>{data.cocktail.ingredients}</Text>
-      <Text>{data.cocktail.preparation}</Text>
-      <Text>Standard garnish: {data.cocktail.garnish}</Text>
-      <Text>Glassware: {data.cocktail.glass}</Text>
-      <Text>{data.cocktail.category}</Text>
+      <Text style={styles.header1}>{data.cocktail.name}</Text>
+      <Text style={styles.header2}>{data.cocktail.category}</Text>
+      <Text style={styles.body}>{data.cocktail.ingredients}</Text>
+      <Text style={styles.body}>{data.cocktail.preparation}</Text>
+      <Text style={styles.body}>
+        <Text style={styles.bold}>Standard garnish: </Text>
+        {data.cocktail.garnish}
+      </Text>
+      <Text style={styles.body}>
+        <Text style={styles.bold}>Glassware: </Text>
+        {data.cocktail.glass}
+      </Text>
       <Link to="/">
         <Text>← Back</Text>
       </Link>
@@ -56,5 +62,20 @@ const styles = StyleSheet.create({
     padding: 20,
     backgroundColor: "#fff"
   },
-  displayLinebreak: {}
+  header1: {
+    fontSize: 20,
+    fontWeight: "bold",
+    marginVertical: 5
+  },
+  header2: {
+    fontSize: 18,
+    fontWeight: "bold",
+    marginVertical: 5
+  },
+  body: {
+    marginVertical: 10
+  },
+  bold: {
+    fontWeight: "bold"
+  }
 });
