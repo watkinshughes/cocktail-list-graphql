@@ -8,7 +8,7 @@ export default function Header() {
       <Link to="/" style={styles.homeLink}>
         <Text styles={styles.siteTitle}>A Proper List</Text>
       </Link>
-      <Link style={styles.menu} to="/add-cocktail">
+      <Link style={styles.menu} to="/submit-cocktail">
         <Text style={styles.text}>Submit cocktail</Text>
       </Link>
     </View>

@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Header from "../../components/Header";
 import CocktailList from "../../components/CocktailList";
 import CocktailDetails from "../../components/CocktailDetails";
-import AddCocktail from "../../components/AddCocktail";
+import SubmitCocktail from "../../components/SubmitCocktail";
 import SubmissionConfirmation from "../../components/SubmissionConfirmation";
 
 export default function App() {
@@ -14,7 +14,7 @@ export default function App() {
         <Header />
         <Switch>
           <Route exact path="/" component={CocktailList} />
-          <Route path="/add-cocktail" component={AddCocktail} />
+          <Route path="/submit-cocktail" component={SubmitCocktail} />
           <Route path="/thank-you" component={SubmissionConfirmation} />
           <Route path="/:id" component={CocktailDetails} />
         </Switch>

@@ -40,13 +40,13 @@ export default function CocktailList() {
 
   const filterData = text => {
     let filteredData = sortedData;
-    const typedWord = text.nativeEvent.text;
+    const typedWord = text.nativeEvent.text.toLowerCase();
     setTypedWordLength(typedWord.length);
     if (typedWordLength < typedWord.length) {
       filteredData = filteredData.filter(cocktail => {
         return (
-          cocktail.name.search(typedWord) !== -1 ||
-          cocktail.ingredients.search(typedWord) !== -1
+          cocktail.name.toLowerCase().search(typedWord) !== -1 ||
+          cocktail.ingredients.toLowerCase().search(typedWord) !== -1
         );
       });
       setSortedData(filteredData);

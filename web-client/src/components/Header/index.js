@@ -7,7 +7,7 @@ export default function Header() {
   return (
     <header className={styles.header}>
       <Title copy="A Proper List" />
-      <Link className={styles.menu} to="/add-cocktail">
+      <Link className={styles.menu} to="/submit-cocktail">
         Submit cocktail
       </Link>
     </header>
