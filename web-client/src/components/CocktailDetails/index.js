@@ -49,7 +49,11 @@ export default function CocktailDetails() {
       <p>
         <strong>Glassware:</strong> {data.cocktail.glass}
       </p>
-      <Link to="/">← Back</Link>
+      <Link to="/">
+        <div>
+          <img alt="" src="/arrow-left.png" height="15" width="15" /> Back
+        </div>
+      </Link>
     </article>
   );
 }

@@ -1,7 +1,8 @@
 .cocktail {
-  margin: 20px 0;
+  margin: 0;
   padding: 20px;
   background: #fff;
+  border-bottom: 1px solid #eee;
 }
 
 .cocktail h1 {
@@ -9,11 +10,10 @@
   width: 100%;
 }
 
-.cocktail span,
-.cocktail small {
-  width: 50%;
+.cocktail span {
+  width: 100%;
 }
 
-.cocktail small {
-  text-align: right;
+.cocktail img {
+  margin: 5px 0;
 }

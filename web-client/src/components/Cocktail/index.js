@@ -7,7 +7,13 @@ export default function Cocktail(props) {
     <article className={styles.cocktail}>
       <Link to={props.id}>
         <h1>
-          <span>{props.name}</span> <small>view recipe →</small>
+          <span>{props.name} </span>
+          <img
+            src="/arrow-right.png"
+            width="15"
+            height="15"
+            alt="view recipe"
+          />
         </h1>
       </Link>
     </article>
