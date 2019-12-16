@@ -16,8 +16,8 @@ const GET_COCKTAILS = gql`
 
 export default function CocktailList() {
   const { loading, error, data } = useQuery(GET_COCKTAILS);
+  const [initialData, setInitialData] = useState("");
   const [sortedData, setSortedData] = useState("");
-  const [typedWordLength, setTypedWordLength] = useState(0);
 
   const sortData = data => {
     return data.sort(function(a, b) {
@@ -33,27 +33,22 @@ export default function CocktailList() {
 
   useEffect(() => {
     if (data) {
+      setInitialData(data.cocktails);
       sortData(data.cocktails);
       setSortedData(data.cocktails);
     }
   }, [data]);
 
   const filterData = text => {
-    let filteredData = sortedData;
-    const typedWord = text.nativeEvent.text.toLowerCase();
-    setTypedWordLength(typedWord.length);
-    if (typedWordLength < typedWord.length) {
-      filteredData = filteredData.filter(cocktail => {
-        return (
-          cocktail.name.toLowerCase().search(typedWord) !== -1 ||
-          cocktail.ingredients.toLowerCase().search(typedWord) !== -1
-        );
-      });
-      setSortedData(filteredData);
-    } else {
-      sortData(data.cocktails);
-      setSortedData(data.cocktails);
-    }
+    let typedWord = new RegExp(`\\b${text.nativeEvent.text.toLowerCase()}\\b`);
+    let filteredData = initialData;
+    filteredData = filteredData.filter(cocktail => {
+      return (
+        cocktail.name.toLowerCase().search(typedWord) !== -1 ||
+        cocktail.ingredients.toLowerCase().search(typedWord) !== -1
+      );
+    });
+    setSortedData(filteredData);
   };
 
   if (loading) {
