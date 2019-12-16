@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
     width: "100%",
     flexDirection: "row",
     justifyContent: "space-between",
-    paddingVertical: 10
+    padding: 10
   },
   homeLink: {
     width: "50%",

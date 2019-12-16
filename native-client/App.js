@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
   app: {
     height: "100%",
     fontSize: 16,
-    padding: 20,
+    paddingVertical: 20,
     backgroundColor: "#f2f2f2"
   }
 });

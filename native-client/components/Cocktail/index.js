@@ -1,12 +1,18 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, Image, StyleSheet } from "react-native";
 import { Link } from "react-router-native";
 
 export default function Cocktail(props) {
   return (
     <View style={styles.cocktail}>
       <Link to={props.id}>
-        <Text>{props.name}</Text>
+        <Text style={styles.cocktailLink}>
+          <Text style={styles.cocktailName}>{props.name} </Text>
+          <Image
+            style={styles.icon}
+            source={require("../../assets/arrow-right.png")}
+          />
+        </Text>
       </Link>
     </View>
   );
@@ -14,8 +20,20 @@ export default function Cocktail(props) {
 
 const styles = StyleSheet.create({
   cocktail: {
-    marginVertical: 10,
+    marginVertical: 0,
     padding: 20,
-    backgroundColor: "#fff"
+    backgroundColor: "#fff",
+    borderBottomWidth: 1,
+    borderBottomColor: "#eee"
+  },
+  cocktailLink: {
+    width: "100%"
+  },
+  cocktailName: {
+    fontWeight: "bold"
+  },
+  icon: {
+    width: 10,
+    height: 10
   }
 });

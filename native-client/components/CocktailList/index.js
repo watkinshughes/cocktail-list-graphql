@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     height: 40,
     padding: 10,
-    marginVertical: 10
+    margin: 10
   },
   cocktailList: {}
 });
