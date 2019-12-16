@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, Image, StyleSheet } from "react-native";
 import { Link } from "react-router-native";
 import { useQuery } from "@apollo/react-hooks";
 import { gql } from "apollo-boost";
@@ -50,7 +50,13 @@ export default function CocktailDetails({ match }) {
         {data.cocktail.glass}
       </Text>
       <Link to="/">
-        <Text>← Back</Text>
+        <View style={styles.backButton}>
+          <Image
+            style={styles.icon}
+            source={require("../../assets/arrow-left.png")}
+          />
+          <Text>Back</Text>
+        </View>
       </Link>
     </View>
   );
@@ -77,5 +83,17 @@ const styles = StyleSheet.create({
   },
   bold: {
     fontWeight: "bold"
+  },
+  backButton: {
+    display: "flex",
+    flexDirection: "row",
+    width: "100%"
+  },
+  icon: {
+    width: 10,
+    height: 10,
+    alignSelf: "flex-start",
+    marginTop: 7,
+    marginRight: 10
   }
 });
