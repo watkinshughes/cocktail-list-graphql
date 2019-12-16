@@ -6,13 +6,13 @@ export default function Cocktail(props) {
   return (
     <View style={styles.cocktail}>
       <Link to={props.id}>
-        <Text style={styles.cocktailLink}>
+        <View style={styles.cocktailLink}>
           <Text style={styles.cocktailName}>{props.name} </Text>
           <Image
             style={styles.icon}
             source={require("../../assets/arrow-right.png")}
           />
-        </Text>
+        </View>
       </Link>
     </View>
   );
@@ -27,13 +27,19 @@ const styles = StyleSheet.create({
     borderBottomColor: "#eee"
   },
   cocktailLink: {
-    width: "100%"
+    width: "100%",
+    display: "flex",
+    flexDirection: "row"
   },
   cocktailName: {
-    fontWeight: "bold"
+    fontWeight: "bold",
+    width: "100%",
+    alignSelf: "flex-start"
   },
   icon: {
     width: 10,
-    height: 10
+    height: 10,
+    alignSelf: "flex-end",
+    marginTop: -10
   }
 });
