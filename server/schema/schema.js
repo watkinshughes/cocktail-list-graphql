@@ -50,7 +50,7 @@ const RootQuery = new GraphQLObjectType({
 const Mutation = new GraphQLObjectType({
   name: "Mutation",
   fields: {
-    addCocktail: {
+    submitCocktail: {
       type: CocktailType,
       args: {
         name: { type: new GraphQLNonNull(GraphQLString) },

@@ -3,7 +3,7 @@ import { gql } from "apollo-boost";
 import { Mutation } from "react-apollo";
 import styles from "./styles.module.css";
 
-const ADD_COCKTAIL = gql`
+const SUBMIT_COCKTAIL = gql`
   mutation(
     $name: String!
     $ingredients: String!
@@ -14,7 +14,7 @@ const ADD_COCKTAIL = gql`
     $contact: String!
     $published: Boolean!
   ) {
-    addCocktail(
+    submitCocktail(
       name: $name
       ingredients: $ingredients
       glass: $glass
@@ -67,7 +67,7 @@ export default function AddCocktail(props) {
 
   return (
     <Mutation
-      mutation={ADD_COCKTAIL}
+      mutation={SUBMIT_COCKTAIL}
       variables={{
         name: values.name,
         ingredients: values.ingredients,
