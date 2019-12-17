@@ -63,7 +63,7 @@ export default function CocktailList() {
   }
 
   return (
-    <ScrollView style={styles.cocktailList}>
+    <ScrollView>
       <TextInput
         style={styles.searchBox}
         type="text"
@@ -90,6 +90,5 @@ const styles = StyleSheet.create({
     height: 40,
     padding: 10,
     margin: 10
-  },
-  cocktailList: {}
+  }
 });
