@@ -3,7 +3,7 @@ import { View, Button, TextInput, Picker, StyleSheet } from "react-native";
 import { gql } from "apollo-boost";
 import { Mutation } from "react-apollo";
 
-const ADD_COCKTAIL = gql`
+const SUBMIT_COCKTAIL = gql`
   mutation(
     $name: String!
     $ingredients: String!
@@ -14,7 +14,7 @@ const ADD_COCKTAIL = gql`
     $contact: String!
     $published: Boolean!
   ) {
-    addCocktail(
+    submitCocktail(
       name: $name
       ingredients: $ingredients
       glass: $glass
@@ -70,7 +70,7 @@ export default function AddCocktail(props) {
   };
   return (
     <Mutation
-      mutation={ADD_COCKTAIL}
+      mutation={SUBMIT_COCKTAIL}
       variables={{
         name: values.name,
         ingredients: values.ingredients,
@@ -158,7 +158,7 @@ export default function AddCocktail(props) {
             <TextInput
               style={styles.textInput}
               type="text"
-              placeholder="Contact Email"
+              placeholder="Your Contact Email"
               name="contact"
               onChange={handleInputChange("contact")}
             />

@@ -156,7 +156,7 @@ export default function AddCocktail(props) {
               <span className="visuallyHidden">Contact email</span>
               <input
                 type="text"
-                placeholder="Contact Email"
+                placeholder="Your Contact Email"
                 name="contact"
                 onChange={handleInputChange("contact")}
               />
