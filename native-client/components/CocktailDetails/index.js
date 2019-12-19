@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, Image, StyleSheet } from "react-native";
+import { ScrollView, View, Text, Image, StyleSheet } from "react-native";
 import { Link } from "react-router-native";
 import { useQuery } from "@apollo/react-hooks";
 import { gql } from "apollo-boost";
@@ -14,6 +14,7 @@ const GET_COCKTAIL_DETAILS = gql`
       garnish
       preparation
       ingredients
+      imageUrl
     }
   }
 `;
@@ -36,29 +37,41 @@ export default function CocktailDetails({ match }) {
   }
 
   return (
-    <View style={styles.cocktailDetails}>
-      <Text style={styles.header1}>{data.cocktail.name}</Text>
-      <Text style={styles.header2}>{data.cocktail.category}</Text>
-      <Text style={styles.body}>{data.cocktail.ingredients}</Text>
-      <Text style={styles.body}>{data.cocktail.preparation}</Text>
-      <Text style={styles.body}>
-        <Text style={styles.bold}>Standard garnish: </Text>
-        {data.cocktail.garnish}
-      </Text>
-      <Text style={styles.body}>
-        <Text style={styles.bold}>Glassware: </Text>
-        {data.cocktail.glass}
-      </Text>
-      <Link to="/">
-        <View style={styles.backButton}>
+    <ScrollView style={styles.cocktailDetails}>
+      <View style={styles.recipeInfo}>
+        <Text style={styles.header1}>{data.cocktail.name}</Text>
+        <Text style={styles.header2}>{data.cocktail.category}</Text>
+        <Text style={styles.body}>{data.cocktail.ingredients}</Text>
+        <Text style={styles.body}>{data.cocktail.preparation}</Text>
+        <Text style={styles.body}>
+          <Text style={styles.bold}>Standard garnish: </Text>
+          {data.cocktail.garnish}
+        </Text>
+        <Text style={styles.body}>
+          <Text style={styles.bold}>Glassware: </Text>
+          {data.cocktail.glass}
+        </Text>
+        <Link to="/">
+          <View style={styles.backButton}>
+            <Image
+              style={styles.icon}
+              source={require("../../assets/arrow-left.png")}
+            />
+            <Text>Back</Text>
+          </View>
+        </Link>
+      </View>
+      {data.cocktail.imageUrl ? (
+        <View style={styles.image}>
           <Image
-            style={styles.icon}
-            source={require("../../assets/arrow-left.png")}
+            style={{ width: 300, height: 300 }}
+            source={{ uri: data.cocktail.imageUrl }}
           />
-          <Text>Back</Text>
         </View>
-      </Link>
-    </View>
+      ) : (
+        <View />
+      )}
+    </ScrollView>
   );
 }
 
@@ -66,7 +79,8 @@ const styles = StyleSheet.create({
   cocktailDetails: {
     marginVertical: 20,
     padding: 20,
-    backgroundColor: "#fff"
+    backgroundColor: "#fff",
+    display: "flex"
   },
   header1: {
     fontSize: 20,
@@ -84,6 +98,9 @@ const styles = StyleSheet.create({
   bold: {
     fontWeight: "bold"
   },
+  recipeInfo: {
+    padding: 10
+  },
   backButton: {
     display: "flex",
     flexDirection: "row",
@@ -95,5 +112,8 @@ const styles = StyleSheet.create({
     alignSelf: "flex-start",
     marginTop: 7,
     marginRight: 10
+  },
+  image: {
+    padding: 10
   }
 });

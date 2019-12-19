@@ -12,6 +12,7 @@ const SUBMIT_COCKTAIL = gql`
     $category: String!
     $preparation: String!
     $contact: String!
+    $imageUrl: String
     $published: Boolean!
   ) {
     submitCocktail(
@@ -21,6 +22,7 @@ const SUBMIT_COCKTAIL = gql`
       garnish: $garnish
       category: $category
       preparation: $preparation
+      imageUrl: $imageUrl
       contact: $contact
       published: $published
     ) {
@@ -42,7 +44,9 @@ export default function AddCocktail(props) {
     garnish: "",
     preparation: "",
     ingredients: "",
-    contact: ""
+    contact: "",
+    imageUrl: "",
+    published: false
   });
 
   const handleInputChange = prop => text => {
@@ -79,6 +83,7 @@ export default function AddCocktail(props) {
         category: values.category,
         preparation: values.preparation,
         contact: values.contact,
+        imageUrl: "",
         published: false
       }}
       onCompleted={() => {
