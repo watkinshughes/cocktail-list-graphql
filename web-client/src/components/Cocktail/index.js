@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import styles from "./styles.module.css";
 
 export default function Cocktail(props) {
-  const slug = props.name.replace(/\s+/g, "-").toLowerCase();
+  const slug = props.name.replace(/\s+/g, "-");
   return (
     <article className={styles.cocktail}>
       <Link to={slug}>
