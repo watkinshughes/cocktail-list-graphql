@@ -9,6 +9,7 @@ const cocktailSchema = new Schema({
   preparation: String,
   ingredients: String,
   contact: String,
+  imageUrl: String,
   published: Boolean
 });
 
