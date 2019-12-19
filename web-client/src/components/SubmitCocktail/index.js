@@ -12,6 +12,7 @@ const SUBMIT_COCKTAIL = gql`
     $category: String!
     $preparation: String!
     $contact: String!
+    $imageUrl: String
     $published: Boolean!
   ) {
     submitCocktail(
@@ -21,6 +22,7 @@ const SUBMIT_COCKTAIL = gql`
       garnish: $garnish
       category: $category
       preparation: $preparation
+      imageUrl: $imageUrl
       contact: $contact
       published: $published
     ) {
@@ -43,6 +45,8 @@ export default function AddCocktail(props) {
     preparation: "",
     ingredients: "",
     contact: "",
+    imageUrl: "",
+    published: false,
     honey: ""
   });
 
@@ -76,6 +80,7 @@ export default function AddCocktail(props) {
         category: values.category,
         preparation: values.preparation,
         contact: values.contact,
+        imageUrl: "",
         published: false
       }}
       onCompleted={() => {
@@ -98,10 +103,7 @@ export default function AddCocktail(props) {
             </label>
             <label>
               <span className="visuallyHidden">Category</span>
-              <select
-                name="category"
-                onChange={handleInputChange("accocategoryuntId")}
-              >
+              <select name="category" onChange={handleInputChange("category")}>
                 <option value="">Select Category</option>
                 <option value="Before Dinner Cocktail">
                   Before Dinner Cocktail

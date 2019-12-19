@@ -14,6 +14,7 @@ const GET_COCKTAIL_DETAILS = gql`
       garnish
       preparation
       ingredients
+      imageUrl
     }
   }
 `;
@@ -37,23 +38,32 @@ export default function CocktailDetails() {
 
   return (
     <article className={styles.cocktailDetails}>
-      <h1>{data.cocktail.name}</h1>
-      <h2>
-        <em>{data.cocktail.category}</em>
-      </h2>
-      <div className="displayLinebreak">{data.cocktail.ingredients}</div>
-      <p>{data.cocktail.preparation}</p>
-      <p>
-        <strong>Standard garnish:</strong> {data.cocktail.garnish}
-      </p>
-      <p>
-        <strong>Glassware:</strong> {data.cocktail.glass}
-      </p>
-      <Link to="/">
-        <div>
-          <img alt="" src="/arrow-left.png" height="15" width="15" /> Back
+      <div className={styles.recipeInfo}>
+        <h1>{data.cocktail.name}</h1>
+        <h2>
+          <em>{data.cocktail.category}</em>
+        </h2>
+        <div className="displayLinebreak">{data.cocktail.ingredients}</div>
+        <p>{data.cocktail.preparation}</p>
+        <p>
+          <strong>Standard garnish:</strong> {data.cocktail.garnish}
+        </p>
+        <p>
+          <strong>Glassware:</strong> {data.cocktail.glass}
+        </p>
+        <Link to="/">
+          <div>
+            <img alt="" src="/arrow-left.png" height="15" width="15" /> Back
+          </div>
+        </Link>
+      </div>
+      {data.cocktail.imageUrl ? (
+        <div className={styles.image}>
+          <img src={data.cocktail.imageUrl} alt={data.cocktail.name} />
         </div>
-      </Link>
+      ) : (
+        <div />
+      )}
     </article>
   );
 }
