@@ -33,9 +33,9 @@ const RootQuery = new GraphQLObjectType({
   fields: {
     cocktail: {
       type: CocktailType,
-      args: { id: { type: GraphQLID } },
+      args: { name: { type: GraphQLID } },
       resolve(parent, args) {
-        const cleanId = sanitize(args.id);
+        const cleanId = sanitize(args.name);
         return Cocktail.findById(cleanId);
       }
     },

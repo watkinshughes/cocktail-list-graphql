@@ -3,9 +3,10 @@ import { Link } from "react-router-dom";
 import styles from "./styles.module.css";
 
 export default function Cocktail(props) {
+  const slug = props.name.replace(/\s+/g, "-").toLowerCase();
   return (
     <article className={styles.cocktail}>
-      <Link to={props.id}>
+      <Link to={slug}>
         <h1>
           <span>{props.name} </span>
           <img
