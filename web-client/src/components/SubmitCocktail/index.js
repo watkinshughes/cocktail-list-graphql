@@ -84,7 +84,7 @@ export default function AddCocktail(props) {
         preparation: values.preparation,
         contact: values.contact,
         imageUrl: "",
-        slug: values.name.replace(/\s+/g, "-").toLowerCase(),
+        slug: values.name.toLowerCase().replace(/\s+/g, "-"),
         published: false
       }}
       onCompleted={() => {

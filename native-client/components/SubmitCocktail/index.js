@@ -1,5 +1,11 @@
 import React, { useState } from "react";
-import { View, Button, TextInput, Picker, StyleSheet } from "react-native";
+import {
+  ScrollView,
+  Button,
+  TextInput,
+  Picker,
+  StyleSheet
+} from "react-native";
 import { gql } from "apollo-boost";
 import { Mutation } from "react-apollo";
 
@@ -87,7 +93,7 @@ export default function AddCocktail(props) {
         preparation: values.preparation,
         contact: values.contact,
         imageUrl: "",
-        slug: values.name.replace(/\s+/g, "-").toLowerCase(),
+        slug: values.name.toLowerCase().replace(/\s+/g, "-"),
         published: false
       }}
       onCompleted={() => {
@@ -98,7 +104,7 @@ export default function AddCocktail(props) {
         if (loading) return null;
         if (error) return `Error: ${error}`;
         return (
-          <View>
+          <ScrollView>
             <TextInput
               style={styles.textInput}
               type="text"
@@ -177,7 +183,7 @@ export default function AddCocktail(props) {
               title="Submit"
               disabled={isButtonDisabled()}
             />
-          </View>
+          </ScrollView>
         );
       }}
     </Mutation>
