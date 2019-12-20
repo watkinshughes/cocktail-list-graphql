@@ -27,7 +27,7 @@ export default function App() {
               <Route exact path="/" component={CocktailList} />
               <Route path="/submit-cocktail" component={SubmitCocktail} />
               <Route path="/thank-you" component={SubmissionConfirmation} />
-              <Route path="/:id" component={CocktailDetails} />
+              <Route path="/:slug" component={CocktailDetails} />
             </Switch>
           </NativeRouter>
         </View>

@@ -10,6 +10,7 @@ const GET_COCKTAILS = gql`
       id
       name
       ingredients
+      slug
     }
   }
 `;
@@ -74,7 +75,11 @@ export default function CocktailList() {
       {sortedData ? (
         sortedData.map(cocktail => {
           return (
-            <Cocktail key={cocktail.id} id={cocktail.id} name={cocktail.name} />
+            <Cocktail
+              key={cocktail.id}
+              name={cocktail.name}
+              slug={cocktail.slug}
+            />
           );
         })
       ) : (

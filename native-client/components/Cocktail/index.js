@@ -5,7 +5,7 @@ import { Link } from "react-router-native";
 export default function Cocktail(props) {
   return (
     <View style={styles.cocktail}>
-      <Link to={props.id}>
+      <Link to={props.slug}>
         <View style={styles.cocktailLink}>
           <Text style={styles.cocktailName}>{props.name} </Text>
           <Image

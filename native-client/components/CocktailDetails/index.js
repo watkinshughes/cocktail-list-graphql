@@ -5,8 +5,8 @@ import { useQuery } from "@apollo/react-hooks";
 import { gql } from "apollo-boost";
 
 const GET_COCKTAIL_DETAILS = gql`
-  query($id: ID) {
-    cocktail(id: $id) {
+  query($slug: String) {
+    cocktail(slug: $slug) {
       id
       name
       glass
@@ -14,15 +14,16 @@ const GET_COCKTAIL_DETAILS = gql`
       garnish
       preparation
       ingredients
+      slug
       imageUrl
     }
   }
 `;
 
 export default function CocktailDetails({ match }) {
-  const id = match.params.id;
+  const slug = match.params.slug;
   const { loading, error, data } = useQuery(GET_COCKTAIL_DETAILS, {
-    variables: { id }
+    variables: { slug }
   });
 
   if (loading) {
