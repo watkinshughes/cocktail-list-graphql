@@ -13,6 +13,7 @@ const SUBMIT_COCKTAIL = gql`
     $preparation: String!
     $contact: String!
     $imageUrl: String
+    $slug: String!
     $published: Boolean!
   ) {
     submitCocktail(
@@ -22,8 +23,9 @@ const SUBMIT_COCKTAIL = gql`
       garnish: $garnish
       category: $category
       preparation: $preparation
-      imageUrl: $imageUrl
       contact: $contact
+      imageUrl: $imageUrl
+      slug: $slug
       published: $published
     ) {
       name
@@ -46,6 +48,7 @@ export default function AddCocktail(props) {
     ingredients: "",
     contact: "",
     imageUrl: "",
+    slug: "",
     published: false,
     honey: ""
   });
@@ -81,6 +84,7 @@ export default function AddCocktail(props) {
         preparation: values.preparation,
         contact: values.contact,
         imageUrl: "",
+        slug: values.name.replace(/\s+/g, "-").toLowerCase(),
         published: false
       }}
       onCompleted={() => {

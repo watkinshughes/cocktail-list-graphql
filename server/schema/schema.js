@@ -24,6 +24,7 @@ const CocktailType = new GraphQLObjectType({
     ingredients: { type: GraphQLString },
     contact: { type: GraphQLString },
     imageUrl: { type: GraphQLString },
+    slug: { type: GraphQLString },
     published: { type: GraphQLBoolean }
   })
 });
@@ -35,8 +36,8 @@ const RootQuery = new GraphQLObjectType({
       type: CocktailType,
       args: { name: { type: GraphQLString } },
       resolve(parent, args) {
-        const cleanName = sanitize(args.name);
-        return Cocktail.findOne({ name: cleanName });
+        const cleanSlug = sanitize(args.slug);
+        return Cocktail.findOne({ slug: cleanSlug });
       }
     },
     cocktails: {
@@ -62,6 +63,7 @@ const Mutation = new GraphQLObjectType({
         ingredients: { type: new GraphQLNonNull(GraphQLString) },
         contact: { type: new GraphQLNonNull(GraphQLString) },
         imageUrl: { type: GraphQLString },
+        slug: { type: new GraphQLNonNull(GraphQLString) },
         published: { type: new GraphQLNonNull(GraphQLBoolean) }
       },
       resolve(parent, args) {
@@ -73,6 +75,7 @@ const Mutation = new GraphQLObjectType({
         const cleanIngedients = sanitize(args.ingredients);
         const cleanContact = sanitize(args.contact);
         const cleanImageUrl = sanitize(args.imageUrl);
+        const cleanSlug = sanitize(args.slug);
         const cleanPublished = sanitize(args.published);
 
         const cocktail = new Cocktail({
@@ -84,6 +87,7 @@ const Mutation = new GraphQLObjectType({
           ingredients: cleanIngedients,
           contact: cleanContact,
           imageUrl: cleanImageUrl,
+          slug: cleanSlug,
           published: cleanPublished
         });
         return cocktail.save();

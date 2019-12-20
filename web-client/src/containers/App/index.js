@@ -3,9 +3,9 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import Header from "../../components/Header";
 import CocktailList from "../../components/CocktailList";
-import CocktailDetails from "../../components/CocktailDetails";
 import SubmitCocktail from "../../components/SubmitCocktail";
 import SubmissionConfirmation from "../../components/SubmissionConfirmation";
+import CocktailDetails from "../../components/CocktailDetails";
 
 export default function App() {
   return (
