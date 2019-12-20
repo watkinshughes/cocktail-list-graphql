@@ -91,11 +91,11 @@ export default function AddCocktail(props) {
         props.history.push("/thank-you");
       }}
     >
-      {(addCocktail, { loading, error }) => {
+      {(submitCocktail, { loading, error }) => {
         if (loading) return null;
         if (error) return `Error: ${error}`;
         return (
-          <form onSubmit={addCocktail} className={styles.form}>
+          <form onSubmit={submitCocktail} className={styles.form}>
             <label>
               <span className="visuallyHidden">Cocktail Name</span>
               <input

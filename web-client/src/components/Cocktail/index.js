@@ -5,7 +5,7 @@ import styles from "./styles.module.css";
 export default function Cocktail(props) {
   return (
     <article className={styles.cocktail}>
-      <Link to={props.slug}>
+      <Link to={`${props.slug}${props.searchParams}`}>
         <h1>
           <span>{props.name} </span>
           <img

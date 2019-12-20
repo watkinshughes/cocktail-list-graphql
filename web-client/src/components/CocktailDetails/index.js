@@ -20,6 +20,7 @@ const GET_COCKTAIL_DETAILS = gql`
 `;
 
 export default function CocktailDetails() {
+  const searchParams = window.location.search;
   const { slug } = useParams();
   const { loading, error, data } = useQuery(GET_COCKTAIL_DETAILS, {
     variables: { slug }
@@ -51,7 +52,7 @@ export default function CocktailDetails() {
         <p>
           <strong>Glassware:</strong> {data.cocktail.glass}
         </p>
-        <Link to="/">
+        <Link to={`/${searchParams}`}>
           <div>
             <img alt="" src="/arrow-left.png" height="15" width="15" /> Back
           </div>
