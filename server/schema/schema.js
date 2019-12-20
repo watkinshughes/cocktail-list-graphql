@@ -34,7 +34,7 @@ const RootQuery = new GraphQLObjectType({
   fields: {
     cocktail: {
       type: CocktailType,
-      args: { name: { type: GraphQLString } },
+      args: { slug: { type: GraphQLString } },
       resolve(parent, args) {
         const cleanSlug = sanitize(args.slug);
         return Cocktail.findOne({ slug: cleanSlug });
