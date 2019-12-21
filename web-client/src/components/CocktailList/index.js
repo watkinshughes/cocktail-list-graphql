@@ -22,6 +22,7 @@ export default function CocktailList() {
   const [searchParams, setSearchParams] = useState(
     new URLSearchParams(window.location.search)
   );
+
   const sortData = data => {
     return data.sort(function(a, b) {
       if (a.name < b.name) {
@@ -36,13 +37,14 @@ export default function CocktailList() {
 
   const filterData = event => {
     event.preventDefault();
+    const typedWord = event.target.value.toLowerCase();
     const params = new URLSearchParams(window.location.search);
-    let typedWord = new RegExp(`\\b${event.target.value.toLowerCase()}\\b`);
+    let searchTerm = new RegExp(`\\b${typedWord}\\b`);
     let filteredData = initialData;
     filteredData = filteredData.filter(cocktail => {
       return (
-        cocktail.name.toLowerCase().search(typedWord) !== -1 ||
-        cocktail.ingredients.toLowerCase().search(typedWord) !== -1
+        cocktail.name.toLowerCase().search(searchTerm) !== -1 ||
+        cocktail.ingredients.toLowerCase().search(searchTerm) !== -1
       );
     });
     setSortedData(filteredData);
@@ -55,21 +57,30 @@ export default function CocktailList() {
     setSearchParams(window.location.search);
   };
 
-  const restoreSearch = () => {
-    const searchTerm = searchParams.get("search");
-    if (searchTerm) {
-      const searchBox = document.getElementById("search");
-      searchBox.value = searchParams.get("search");
-      searchBox.blur();
-    }
+  const handleSubmit = event => {
+    event.preventDefault();
+    return false;
+  };
+
+  const restoreSearch = savedSearch => {
+    const searchBox = document.getElementById("search");
+    searchBox.value = savedSearch;
+    var event = new KeyboardEvent("keydown", {
+      key: " "
+    });
+    searchBox.dispatchEvent(event);
+    debugger;
   };
 
   useEffect(() => {
+    const savedSearch = searchParams.get("search");
     if (data) {
       setInitialData(data.cocktails);
       sortData(data.cocktails);
       setSortedData(data.cocktails);
-      restoreSearch();
+      if (savedSearch) {
+        restoreSearch(savedSearch);
+      }
     }
   }, [data]);
 
@@ -98,7 +109,7 @@ export default function CocktailList() {
               id="search"
               placeholder="Filter by cocktail name or search by ingredient"
               onChange={filterData}
-              onSubmit={filterData}
+              onSubmit={handleSubmit}
             />
           </label>
         </fieldset>
