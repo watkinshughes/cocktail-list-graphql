@@ -36,10 +36,9 @@ export default function CocktailList() {
   };
 
   const filterData = (event, data, savedSearch) => {
-    debugger;
     const typedWord = savedSearch || event.target.value.toLowerCase();
     const params = new URLSearchParams(window.location.search);
-    let searchTerm = new RegExp(`\\b${typedWord}\\b`);
+    const searchTerm = new RegExp(`\\b${typedWord}\\b`);
     let filteredData = initialData || data;
     filteredData = filteredData.filter(cocktail => {
       return (
@@ -48,13 +47,19 @@ export default function CocktailList() {
       );
     });
     setSortedData(filteredData);
-    params.set("search", `${typedWord}`);
-    window.history.replaceState(
-      {},
-      "",
-      `${window.location.pathname}?${params}`
-    );
-    setSearchParams(window.location.search);
+    if (!typedWord) {
+      params.delete("search");
+      window.history.replaceState({}, "", `${window.location.pathname}`);
+      setSearchParams("");
+    } else {
+      params.set("search", `${typedWord}`);
+      window.history.replaceState(
+        {},
+        "",
+        `${window.location.pathname}?${params}`
+      );
+      setSearchParams(window.location.search);
+    }
   };
 
   const handleSubmit = event => {
