@@ -35,12 +35,12 @@ export default function CocktailList() {
     });
   };
 
-  const filterData = event => {
-    event.preventDefault();
-    const typedWord = event.target.value.toLowerCase();
+  const filterData = (event, data, savedSearch) => {
+    debugger;
+    const typedWord = savedSearch || event.target.value.toLowerCase();
     const params = new URLSearchParams(window.location.search);
     let searchTerm = new RegExp(`\\b${typedWord}\\b`);
-    let filteredData = initialData;
+    let filteredData = initialData || data;
     filteredData = filteredData.filter(cocktail => {
       return (
         cocktail.name.toLowerCase().search(searchTerm) !== -1 ||
@@ -59,17 +59,6 @@ export default function CocktailList() {
 
   const handleSubmit = event => {
     event.preventDefault();
-    return false;
-  };
-
-  const restoreSearch = savedSearch => {
-    const searchBox = document.getElementById("search");
-    searchBox.value = savedSearch;
-    var event = new KeyboardEvent("keydown", {
-      key: " "
-    });
-    searchBox.dispatchEvent(event);
-    debugger;
   };
 
   useEffect(() => {
@@ -79,7 +68,9 @@ export default function CocktailList() {
       sortData(data.cocktails);
       setSortedData(data.cocktails);
       if (savedSearch) {
-        restoreSearch(savedSearch);
+        const searchBox = document.getElementById("search");
+        searchBox.value = savedSearch;
+        filterData(null, data.cocktails, savedSearch);
       }
     }
   }, [data]);
