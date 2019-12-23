@@ -93,7 +93,7 @@ export default function CocktailList() {
 
   return (
     <section className={styles.cocktailList}>
-      <form className={styles.search}>
+      <form className={styles.search} onSubmit={handleSubmit}>
         <fieldset>
           <label>
             <span className="visuallyHidden">
@@ -105,7 +105,6 @@ export default function CocktailList() {
               id="search"
               placeholder="Filter by cocktail name or search by ingredient"
               onChange={filterData}
-              onSubmit={handleSubmit}
             />
           </label>
         </fieldset>
